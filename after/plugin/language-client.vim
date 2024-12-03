@@ -62,13 +62,32 @@ function! s:wire_coc_nvim_config()
 
   " Use tab for trigger completion with characters ahead and navigate
   " NOTE: There's always complete item selected by default, you may want to enable
-  " no select by `"suggest.noselect": true` in your configuration file
+  "   no select by `"suggest.noselect": true` in your configuration file
   " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-  " other plugin before putting this into your config
-  inoremap <silent><expr> <TAB>
-        \ coc#pum#visible() ? coc#pum#next(1) :
-        \ CheckBackspace() ? "\<Tab>" :
-        \ coc#refresh()
+  "   other plugin before putting this into your config
+  " - SAVVY: DepoXy sets Insert mode <Tab> map:
+  "
+  "     :verbose imap <tab>
+  "     i  <Tab>         <SNR>97_InsertSmartTab()
+  "     Last set from ~/.vim/pack/landonb/start/dubs_edit_juice/plugin/ctab.vim line 90
+  "
+  "   And the suggested mapping inhibits <Tab> after non-whitespace on a line:
+  "
+  "     " If menu visible, pick next suggestion.
+  "     " If previous character is whitespace, insert <Tab>.
+  "     " If previous character is not whitespace, show menu.
+  "     inoremap <silent><expr> <TAB>
+  "           \ coc#pum#visible() ? coc#pum#next(1) :
+  "           \ CheckBackspace() ? "\<Tab>" :
+  "           \ coc#refresh()
+  "
+  "   Also I cannot suss what coc#refresh() does, so we'll drop it,
+  "   so that tabbing after non-whitespace isn't broken.
+  inoremap <expr> <TAB> coc#pum#visible() ? coc#pum#next(1) : InsertSmartTab()
+  " If menu showing, select previous suggestion.
+  " - Otherwise, <Shift-Tab> will now backspace
+  "   (in stock Vim, <Shift-Tab> inserts <Tab>).
+  "   - MAYBE: Find an alternative <Shift-Tab> behavior.
   inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
   function! CheckBackspace() abort
