@@ -178,6 +178,50 @@ function! s:wire_coc_nvim_config()
 
   " ***
 
+  " SAVVY: As mentioned in previous block, coc.nvim skips its default
+  " bindings if those bindings are already mapped.
+  "
+  " This includes two other bindings, <C-e> and <C-y>.
+  "
+  " coc.nvim would otherwise set them thusly:
+  "
+  "   inoremap <silent><expr> <C-e> coc#pum#visible() ? coc#pum#cancel() : "\<C-e>"
+  "   inoremap <silent><expr> <C-y> coc#pum#visible() ? coc#pum#confirm() : "\<C-y>"
+  "
+  " But Dubs Vim got to <C-e> first:
+  "
+  "   inoremap <C-e> <C-o><C-e>
+  "
+  "	- CXREF: ~/.vim/pack/landonb/start/dubs_appearance/plugin/scroll_window_fix.vim @ 46
+  "
+  "	And Vim itself assigns <C-y> if mswin is enabled:
+  "
+  "   inoremap <C-Y> <C-O><C-R>
+  "
+  "	- CXREF: ~/.local/share/vim/vim91/mswin.vim @ 79
+  "	  /Applications/MacVim.app/Contents/Resources/vim/runtime/mswin.vim @ 99
+  "
+  " SAVVY: When mswin is not enabled, in normal mode, C-e scrolls the
+  "        window down, and C-y scrolls it up. And in insert mode, C-e
+  "        mirrors the characters from the line below, one character at
+  "        a time; and C-y similarly mirrors the line above.
+  "        - But when using mswin mappings, C-y is mapped to redo in both
+  "          modes. And C-e is left alone.
+  "         - But redo is also found at <C-y>, which is the more conventional
+  "           mapping (that other apps tend to use, if not <Shift-Ctrl-Z>
+  "           or <Shift-Cmd-Z>).
+  "         - For parity with normal mode, Dubs Vim restores the <C-e>
+  "           binding, so it scrolls the window up one line.
+  "           - And Dubs Vim uses <M-e> for scroll up one line.
+  "           - I.e., <Ctrl-E> down, <Alt-E> up.
+  "
+  " Note that <Esc> also cancels the pum, but it also leaves Insert mode.
+  inoremap <silent><expr> <C-e> coc#pum#visible() ? coc#pum#cancel() : "\<C-o><C-e>"
+  " Note that <CR> also confirms the pum selection (mapped below).
+  inoremap <silent><expr> <C-y> coc#pum#visible() ? coc#pum#confirm() : "\<C-O><C-R>"
+
+  " ***
+
   " Make <CR> to accept selected completion item or notify coc.nvim to format
   " <C-g>u breaks current undo, please make your own choice
   " - The suggestion from coc.nvim/README inhibits <CR> from completing
