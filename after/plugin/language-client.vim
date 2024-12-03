@@ -39,6 +39,7 @@ function! s:wire_coc_nvim_config()
   " ***
 
   " Some servers have issues with backup files, see #649
+  " REFER: https://github.com/neoclide/coc.nvim/issues/649
   "
   " SAVVY: Already set
   "   set nobackup
@@ -83,6 +84,7 @@ function! s:wire_coc_nvim_config()
   "
   "   Also I cannot suss what coc#refresh() does, so we'll drop it,
   "   so that tabbing after non-whitespace isn't broken.
+  " WORDS: pum → *popup menu*
   inoremap <expr> <TAB> coc#pum#visible() ? coc#pum#next(1) : InsertSmartTab()
   " If menu showing, select previous suggestion.
   " - Otherwise, <Shift-Tab> will now backspace
