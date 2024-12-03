@@ -9,7 +9,7 @@ let g:plugin_vim_depoxy_coc_defaults_language_client = 1
 
 " +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
 
-function! s:lang_client_config_lsp()
+function! s:wire_coc_nvim_config()
   " Seems like this should be noted on the CoC README, but don't
   " load any of these if the CoC extension is not loaded — especially
   " the <CR> imap, which breaks Vim if CoC not loaded (when you hit
@@ -238,5 +238,5 @@ function! s:lang_client_config_lsp()
     \ = ['.git', '.env', 'venv', '.venv', 'setup.cfg', 'setup.py', 'pyproject.toml', 'pyrightconfig.json']
 endfunction
 
-call <SID>lang_client_config_lsp()
+call <SID>wire_coc_nvim_config()
 
