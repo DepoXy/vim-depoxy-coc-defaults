@@ -99,6 +99,85 @@ function! s:wire_coc_nvim_config()
 
   " ***
 
+  " SAVVY: coc.nvim wires a number of bindings to help navigate the pum,
+  " so long as those bindings are not already mapped.
+  "
+  " - CXREF: See 'Default key-mappings for completion':
+  "     ~/.vim/pack/neoclide/start/coc.nvim/plugin/coc.vim @ 709
+  "
+  " For DepoXy (which runs *Dubs Vim*, as author calls it, just a collection
+  " of dozens of plugins), that means the CoC wires <PageUp> and <PageDown>
+  " to help navigate the pum. But CoC skips <Up> and <Down>, because Dubs
+  " maps those (to change how the cursor interacts with &wrap'ped lines).
+  "
+  " CoC skips <Up> and <Down> because Dubs already defines those.
+  " - Specifically, CoC doesn't enter these branches:
+  "     if empty(mapcheck('<down>', 'i'))
+  "       inoremap <silent><expr> <down> coc#pum#visible() ? coc#pum#next(0) : "\<down>"
+  "     endif
+  "     if empty(mapcheck('<up>', 'i'))
+  "       inoremap <silent><expr> <up> coc#pum#visible() ? coc#pum#prev(0) : "\<up>"
+  "     endif
+  " - To see the Dubs maps, run `:verbose imap <Up>` and `:verbose imap <Down>`
+  "   and you'll find them defined by dubs_toggle_textwrap (see CXREF below):
+  "       inoremap <silent> <Up>   <C-o>gk
+  "       inoremap <silent> <Down> <C-o>gj
+  "   - These mappings ensure <Up> and <Down> traverse visual boundaries,
+  "     not logical ones, i.e., when &wrap is on, so the cursor is moved
+  "     by a single visible line, and not by the logical line.
+  "
+  " So map <Up>/<Down> to work like <Tab>/<Shift-Tab>, to help naviage the
+  " pum, but also ensure that dubs_toggle_textwrap also works as expected.
+  "
+  " - CXREF:
+  "   ~/.vim/pack/landonb/start/dubs_toggle_textwrap/plugin/dubs_toggle_textwrap.vim
+  "   ~/.vim/pack/landonb/start/dubs_toggle_textwrap/autoload/toggle_textwrap/wrapnav.vim
+  function! s:SetupWrapping()
+    function! s:EnableWrapNav()
+      call g:toggle_textwrap#wrapnav#EnableWrapNav()
+      inoremap <silent><expr> <Up> coc#pum#visible() ? coc#pum#prev(0) : "\<C-o>gk"
+      inoremap <silent><expr> <Down> coc#pum#visible() ? coc#pum#next(0) : "\<C-o>gj"
+    endfunction
+
+    function! s:DisableWrapNav()
+      call g:toggle_textwrap#wrapnav#DisableWrapNav()
+      inoremap <silent><expr> <Up> coc#pum#visible() ? coc#pum#prev(0) : "\<C-o>k"
+      inoremap <silent><expr> <Down> coc#pum#visible() ? coc#pum#next(0) : "\<C-o>j"
+    endfunction
+
+    " MIMIC: The ToggleWrap function, <Leader>w map, and the if-&wrap
+    " block each reproduce what dubs_toggle_textwrap does.
+    function! s:ToggleWrap()
+      if &wrap
+        echo "Wrap OFF"
+        call s:DisableWrapNav()
+      else
+        echo "Wrap ON"
+        call s:EnableWrapNav()
+      endif
+    endfunction
+
+    " Toggle wrapping with \w
+    " -------------------------
+    " CALSO/2020-05-10: vim-surround also toggles wrap: `[ow`, `]ow`, and `yow`.
+    silent! unmap <Leader>w
+    noremap <silent> <Leader>w :call <SID>ToggleWrap()<CR>
+
+    if &wrap
+      call s:EnableWrapNav()
+    else
+      call s:DisableWrapNav()
+    endif
+  endfunction
+
+  " If dubs_toggle_textwrap not active, coc.nvim will map <Up> and <Down>.
+  " But if dubs_toggle_textwrap is active, we have to setup the maps.
+  if exists("*g:toggle_textwrap#wrapnav#EnableWrapNav")
+    call s:SetupWrapping()
+  endif
+
+  " ***
+
   " Make <CR> to accept selected completion item or notify coc.nvim to format
   " <C-g>u breaks current undo, please make your own choice
   inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
