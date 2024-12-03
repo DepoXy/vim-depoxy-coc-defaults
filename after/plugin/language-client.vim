@@ -58,6 +58,19 @@ let g:asyncomplete_auto_popup = 0
 " ***
 
 function! s:lang_client_config_lsp()
+  " Seems like this should be noted on the CoC README, but don't
+  " load any of these if the CoC extension is not loaded — especially
+  " the <CR> imap, which breaks Vim if CoC not loaded (when you hit
+  " <Enter> in Insert mode you get an error and not a newline).
+  " - SAVVY: See `:h exists` — Use ':exists(*funcname)' to check if
+  "   function defined.
+  if !exists("*CocAction")
+
+    return
+  endif
+
+  " ***
+
   " REFER: Circa 2024 config:
   "   https://raw.githubusercontent.com/neoclide/coc.nvim/master/doc/coc-example-config.vim
   " CXREF: Found locally within DepoXy environment at:
