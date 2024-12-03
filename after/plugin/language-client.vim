@@ -206,9 +206,16 @@ function! s:wire_coc_nvim_config()
   command! -nargs=0 OR :call CocActionAsync('runCommand', 'editor.action.organizeImport')
 
   " Add (Neo)Vim's native statusline support
-  " NOTE: Please see `:h coc-status` for integrations with external plugins that
-  " provide custom statusline: lightline.vim, vim-airline
-  set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+  " NOTE: Please see `:h coc-status` for integrations with external plugins
+  "   that provide custom statusline: lightline.vim, vim-airline
+  " SAVVY: Help says might need to ensure statusline automatically refreshed:
+  "   autocmd User CocStatusChange redrawstatus
+  " SAVVY: The ^= prepends this line to the existing statusline,
+  "   e.g., to dubs_mescaline.
+  " ISOFF: If I disable dubs_mescaline, when I use a completion, I just
+  "   see 'SNIP' printed to the status line. Meh.
+  "
+  "  set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
   " Mappings for CoCList
   " Show all diagnostics
