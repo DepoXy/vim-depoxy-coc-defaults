@@ -9,54 +9,6 @@ let g:plugin_vim_depoxy_coc_defaults_language_client = 1
 
 " +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
 
-" REFER: Various vim-lsp options:
-"
-"   :h vim-lsp
-
-" ***
-
-" REFER: To disable LSP, run:
-"
-"   call lsp#disable()
-
-" ***
-
-" SAVVY: Already set:
-"
-"   let g:lsp_diagnostics_enabled = 1
-
-" ***
-
-" SAVVY: By default, vim-lsp shows a diagnostic column (two characters
-" wide, just to the left of the line number) that shows diagnostic errors.
-"
-" - If you'd like to see the error message in the status line when the
-"   cursor is on a line with a diagnostic message, set this:
-"
-"     let g:lsp_diagnostics_echo_cursor = 1
-"
-" - If you'd like to see the message in a popup under the cursor instead,
-"   try this one (even more distracting than previous *_echo_cursor):
-"
-"     let g:lsp_diagnostics_float_cursor = 1
-
-" ***
-
-" By default, if you put the cursor over a known symbol,
-" a moment later, the whole word is highlighted.
-" - How distracting!
-
-let g:lsp_highlight_references_enabled = 0
-
-" ***
-
-" Do not show autocomplete popup by default.
-"
-"   :h asyncomplete.vim
-let g:asyncomplete_auto_popup = 0
-
-" ***
-
 function! s:lang_client_config_lsp()
   " Seems like this should be noted on the CoC README, but don't
   " load any of these if the CoC extension is not loaded — especially
