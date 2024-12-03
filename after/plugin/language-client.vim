@@ -1,4 +1,4 @@
-" Author: Landon Bouma (landonb &#x40; retrosoft &#x2E; com)
+" Author: Landon Bouma <https://tallybark.com/>
 " Project: https://github.com/DepoXy/vim-depoxy-coc-defaults#🥥
 " License: CC0 1.0 <https://creativecommons.org/publicdomain/zero/1.0/>
 
