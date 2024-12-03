@@ -9,6 +9,13 @@ let g:plugin_vim_depoxy_coc_defaults_language_client = 1
 
 " +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
 
+" USAGE: Enable `finish` and reopen Vim to test if any of the below
+" conflicts with your other plugins.
+"
+"  finish
+
+" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
+
 function! s:wire_coc_nvim_config()
   " Seems like this should be noted on the CoC README, but don't
   " load any of these if the CoC extension is not loaded — especially
