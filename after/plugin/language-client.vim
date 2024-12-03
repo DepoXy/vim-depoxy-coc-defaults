@@ -198,12 +198,26 @@ function! s:wire_coc_nvim_config()
 
   " ***
 
-  " Use <c-space> to trigger completion
-  if has('nvim')
-    inoremap <silent><expr> <C-Space> coc#refresh()
-  else
-    inoremap <silent><expr> <C-@> coc#refresh()
-  endif
+  " Use <C-Space> to trigger completion.
+  " SAVVY: Circa 2020, coc-nvim README suggested <Ctrl-Space> for both
+  " Neovim and Vim. But circa 2024, its README now suggests <Ctrl-Space>
+  " for Neovim, and <Ctrl-@> if not Neovim.
+  " - E.g.,
+  "     if has('nvim')
+  "       inoremap <silent><expr> <C-Space> coc#refresh()
+  "     else
+  "       inoremap <silent><expr> <C-@> coc#refresh()
+  "     endif
+  " - But author not sure why the difference between Vims, because
+  "   <Ctrl-Space> is generally not otherwise wired in Vim.
+  " - Also, <Ctrl-@> is awkward to press. If your pinky finger is on
+  "   the Control key, it requires scrunching it down at a weird angle
+  "   to reach the '@' key with either your middle or pointer finger.
+  " So let's use <Ctrl-Space> no matter the Vim.
+  " - Another option could be <Shift-Space>, which is also pretty easy to
+  "   press, and easy to remember (though not as comfortable to press as
+  "   <Ctrl-Space>, IMO).
+  inoremap <silent><expr> <C-Space> coc#refresh()
 
   " ***
 
