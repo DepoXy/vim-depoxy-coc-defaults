@@ -90,7 +90,7 @@ function! s:wire_coc_nvim_config()
   " - Otherwise, <Shift-Tab> will now backspace
   "   (in stock Vim, <Shift-Tab> inserts <Tab>).
   "   - MAYBE: Find an alternative <Shift-Tab> behavior.
-  inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+  inoremap <expr><S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
   function! CheckBackspace() abort
     let col = col('.') - 1
@@ -108,9 +108,9 @@ function! s:wire_coc_nvim_config()
 
   " Use <c-space> to trigger completion
   if has('nvim')
-    inoremap <silent><expr> <c-space> coc#refresh()
+    inoremap <silent><expr> <C-Space> coc#refresh()
   else
-    inoremap <silent><expr> <c-@> coc#refresh()
+    inoremap <silent><expr> <C-@> coc#refresh()
   endif
 
   " ***
