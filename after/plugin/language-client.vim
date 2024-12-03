@@ -82,6 +82,11 @@ function! s:wire_coc_nvim_config()
   "           \ CheckBackspace() ? "\<Tab>" :
   "           \ coc#refresh()
   "
+  "     function! CheckBackspace() abort
+  "       let col = col('.') - 1
+  "       return !col || getline('.')[col - 1]  =~# '\s'
+  "     endfunction
+  "
   "   Also I cannot suss what coc#refresh() does, so we'll drop it,
   "   so that tabbing after non-whitespace isn't broken.
   " WORDS: pum → *popup menu*
@@ -91,11 +96,6 @@ function! s:wire_coc_nvim_config()
   "   (in stock Vim, <Shift-Tab> inserts <Tab>).
   "   - MAYBE: Find an alternative <Shift-Tab> behavior.
   inoremap <expr><S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
-
-  function! CheckBackspace() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~# '\s'
-  endfunction
 
   " ***
 
