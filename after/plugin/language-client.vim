@@ -77,7 +77,7 @@ function! s:wire_coc_nvim_config()
   "
   "     :verbose imap <tab>
   "     i  <Tab>         <SNR>97_InsertSmartTab()
-  "     Last set from ~/.vim/pack/landonb/start/dubs_edit_juice/plugin/ctab.vim line 90
+  "     Last set from ~/.vim/pack/landonb/start/dubs_edit_juice/plugin/smart-tabs.vim line 90
   "
   "   And the suggested mapping inhibits <Tab> after non-whitespace on a line:
   "
