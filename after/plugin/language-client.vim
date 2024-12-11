@@ -231,21 +231,32 @@ function! s:wire_coc_nvim_config()
 
   " Make <CR> to accept selected completion item or notify coc.nvim to format
   " <C-g>u breaks current undo, please make your own choice
+  "
   " - The suggestion from coc.nvim/README inhibits <CR> from completing
   "   abbreviations (:iabbrev) — e.g., `myabbrev<CR>` won't work, but
   "   `myabbrev<Ctrl-CR>` and `myabbrev<Ctrl-Space>` both still work.
+  "
   " - DUNNO: I'm unsure what the `\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>`
   "   does. My testing reveals similar behavior with or without it.
   "   - The coc.nvim/README says 'to format', so maybe it has to do
   "     with... formatting the adjacent code?
   "   - Anyway, here's the snippet from the README:
-  "
   "       inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-  "         \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+  "         \ : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+  "   - At first I thought this inhibited iabbrev completion on <CR>
+  "     and demoed an alternative map:
+  "       inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+  "     And while I cannot tell the difference the behavior, it doesn't
+  "     resolve the iabbrev issue.
+  "   - Fortunately, you can redo iabbrev snippets using an async mode
+  "     mapper:
+  "       https://github.com/embrace-vim/vim-async-mapper#જ⁀➴
+  "     So we'll use the recommended CoC map.
   "
-  " - And here's our approach. Use <CR> to accept the selected drop-down
+  " - Use <CR> to accept the selected drop-down
   "   suggestion, otherwise <CR> behaves normally.
-  inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+  inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+    \ : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
   " ***
 
