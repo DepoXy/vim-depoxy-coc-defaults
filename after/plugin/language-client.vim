@@ -250,7 +250,7 @@ function! s:wire_coc_nvim_config()
   "     resolve the iabbrev issue.
   "   - Fortunately, you can redo iabbrev snippets using an async mode
   "     mapper:
-  "       https://github.com/embrace-vim/vim-async-mapper#જ⁀➴
+  "       https://github.com/embrace-vim/vim-async-map#જ⁀➴
   "     So we'll use the recommended CoC map.
   "
   " - Use <CR> to accept the selected drop-down
