@@ -255,8 +255,24 @@ function! s:wire_coc_nvim_config()
   "
   " - Use <CR> to accept the selected drop-down
   "   suggestion, otherwise <CR> behaves normally.
+  "
+  " SAVVY/2024-12-12: The <C-g>u creates a new undo block.
+  " - REFER: :h i_CTRL-G_u  
+  " - Without closing the undo sequence, undo undoes *everything* you
+  "   typed since entering insert mode, which is default Vim behavior.
+  "   - Basically Vim expects you to edit oopsies, not to undo them.
+  " - If the close is first — <C-g>u<CR> — undo clears the current line
+  "   and puts cursor at the end of the previous line.
+  " - If you swap it — <CR><C-g>u — then undo undoes to start of line,
+  "   but it'll leave any indent and comment leader.
+  "   - Note that using <Ctrl-{Arrow}> also ends an undo sequence
+  "     (adds an undo break?), which is a command map author has
+  "     set from one of their plugins.
+  "     - E.g., <Ctrl-Left> calls <C-O>b to move cursor to start
+  "       of the word word (so <C-O> from insert mode adds break,
+  "       because you leave insert mode temporary and run a command).
   inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-    \ : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+    \ : "\<CR>\<C-g>u\<c-r>=coc#on_enter()\<CR>"
 
   " ***
 
