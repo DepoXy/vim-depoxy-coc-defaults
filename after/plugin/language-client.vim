@@ -2,9 +2,20 @@
 " Project: https://github.com/DepoXy/vim-depoxy-coc-defaults#🥥
 " License: CC0 1.0 <https://creativecommons.org/publicdomain/zero/1.0/>
 
-if exists("g:plugin_vim_depoxy_coc_defaults_language_client") || &cp
+" -------------------------------------------------------------------
+
+" GUARD: Press <F9> to reload this plugin (or :source it).
+" - Via: https://github.com/embrace-vim/vim-source-reloader#↩️
+
+if expand('%:p') ==# expand('<sfile>:p')
+  unlet! g:plugin_vim_depoxy_coc_defaults_language_client
+endif
+
+if exists('g:plugin_vim_depoxy_coc_defaults_language_client') || &cp
+
   finish
 endif
+
 let g:plugin_vim_depoxy_coc_defaults_language_client = 1
 
 " -------------------------------------------------------------------
