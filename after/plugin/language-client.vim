@@ -178,8 +178,7 @@ function! s:wire_coc_nvim_config()
     " Toggle wrapping with \dw
     " ------------------------
     " CALSO/2020-05-10: vim-surround also toggles wrap: `[ow`, `]ow`, and `yow`.
-    silent! unmap <Leader>dw
-    noremap <silent> <Leader>dw :call <SID>ToggleWrap()<CR>
+    nnoremap <silent> <Leader>dw :call <SID>ToggleWrap()<CR>
 
     if &wrap
       call s:EnableWrapNav()
