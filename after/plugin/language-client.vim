@@ -44,7 +44,7 @@ function! s:wire_coc_nvim_config()
   " REFER: Circa 2024 config:
   "   https://raw.githubusercontent.com/neoclide/coc.nvim/master/doc/coc-example-config.vim
   " CXREF: Found locally within DepoXy environment at:
-  "   ~/.vim/pack/neoclide/start/coc.nvim/doc/coc-example-config.vim
+  "   ~/.kit/nvim/neoclide/start/coc.nvim/doc/coc-example-config.vim
 
   " ***
 
@@ -88,7 +88,7 @@ function! s:wire_coc_nvim_config()
   "
   "     :verbose imap <tab>
   "     i  <Tab>         <SNR>97_InsertSmartTab()
-  "     Last set from ~/.vim/pack/landonb/start/dubs_edit_juice/plugin/smart-tabs.vim line 90
+  "     Last set from ~/.kit/nvim/landonb/start/dubs_edit_juice/plugin/smart-tabs.vim line 90
   "
   "   And the suggested mapping inhibits <Tab> after non-whitespace on a line:
   "
@@ -121,7 +121,7 @@ function! s:wire_coc_nvim_config()
   " so long as those bindings are not already mapped.
   "
   " - CXREF: See 'Default key-mappings for completion':
-  "     ~/.vim/pack/neoclide/start/coc.nvim/plugin/coc.vim @ 709
+  "     ~/.kit/nvim/neoclide/start/coc.nvim/plugin/coc.vim @ 709
   "
   " For DepoXy (which runs *Dubs Vim*, as author calls it, just a collection
   " of dozens of plugins), that means the CoC wires <PageUp> and <PageDown>
@@ -148,8 +148,8 @@ function! s:wire_coc_nvim_config()
   " pum, but also ensure that dubs_toggle_textwrap also works as expected.
   "
   " - CXREF:
-  "   ~/.vim/pack/landonb/start/dubs_toggle_textwrap/plugin/dubs_toggle_textwrap.vim
-  "   ~/.vim/pack/landonb/start/dubs_toggle_textwrap/autoload/toggle_textwrap/wrapnav.vim
+  "   ~/.kit/nvim/landonb/start/dubs_toggle_textwrap/plugin/dubs_toggle_textwrap.vim
+  "   ~/.kit/nvim/landonb/start/dubs_toggle_textwrap/autoload/toggle_textwrap/wrapnav.vim
   function! s:SetupWrapping()
     function! s:EnableWrapNav()
       call g:toggle_textwrap#wrapnav#EnableWrapNav()
@@ -209,7 +209,7 @@ function! s:wire_coc_nvim_config()
   "
   "   inoremap <C-e> <C-o><C-e>
   "
-  "	- CXREF: ~/.vim/pack/landonb/start/dubs_appearance/plugin/scroll_window_fix.vim @ 46
+  "	- CXREF: ~/.kit/nvim/landonb/start/dubs_appearance/plugin/scroll_window_fix.vim @ 46
   "
   "	And Vim itself assigns <C-y> if mswin is enabled:
   "
