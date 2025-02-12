@@ -1,4 +1,4 @@
-# vim-depoxy-coc-defaults
+# vim-depoxy-coc-defaults 🥥
 
 Opinionated [`coc`](https://github.com/neoclide/coc.nvim) defaults.
 

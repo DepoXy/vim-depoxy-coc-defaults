@@ -1,6 +1,6 @@
 *vim-depoxy-coc-defaults.txt*          Opionated CoC defaults.
 
-vim-depoxy-coc-defaults~
+vim-depoxy-coc-defaults 🥥 ~
                                      *vim-depoxy-coc-defaults-author*
 
 Author: Landon Bouma <http://github.com/landonb>
@@ -50,7 +50,7 @@ https://github.com/neoclide/coc-json
 ===========================================================================
 USAGE                                *vim-depoxy-coc-defaults-commands*
 
-vim-depoxy-coc-defaults commands~
+vim-depoxy-coc-defaults commands ~
 
 Use `[g` and `]g` to navigate diagnostics:
 
