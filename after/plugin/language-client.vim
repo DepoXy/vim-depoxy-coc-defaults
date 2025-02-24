@@ -88,7 +88,7 @@ function! s:wire_coc_nvim_config()
   "
   "     :verbose imap <tab>
   "     i  <Tab>         <SNR>97_InsertSmartTab()
-  "     Last set from ~/.kit/nvim/landonb/start/dubs_edit_juice/plugin/smart-tabs.vim line 90
+  "     Last set from ~/.kit/nvim/landonb/dubs_edit_juice/plugin/smart-tabs.vim line 90
   "
   "   And the suggested mapping inhibits <Tab> after non-whitespace on a line:
   "
@@ -148,8 +148,8 @@ function! s:wire_coc_nvim_config()
   " pum, but also ensure that dubs_toggle_textwrap also works as expected.
   "
   " - CXREF:
-  "   ~/.kit/nvim/landonb/start/dubs_toggle_textwrap/plugin/dubs_toggle_textwrap.vim
-  "   ~/.kit/nvim/landonb/start/dubs_toggle_textwrap/autoload/toggle_textwrap/wrapnav.vim
+  "   ~/.kit/nvim/landonb/dubs_toggle_textwrap/plugin/dubs_toggle_textwrap.vim
+  "   ~/.kit/nvim/landonb/dubs_toggle_textwrap/autoload/toggle_textwrap/wrapnav.vim
   function! s:SetupWrapping()
     function! s:EnableWrapNav()
       call g:toggle_textwrap#wrapnav#EnableWrapNav()
@@ -209,7 +209,7 @@ function! s:wire_coc_nvim_config()
   "
   "   inoremap <C-e> <C-o><C-e>
   "
-  "	- CXREF: ~/.kit/nvim/landonb/start/dubs_appearance/plugin/scroll_window_fix.vim @ 46
+  "	- CXREF: ~/.kit/nvim/landonb/dubs_appearance/plugin/scroll_window_fix.vim @ 46
   "
   "	And Vim itself assigns <C-y> if mswin is enabled:
   "
