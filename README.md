@@ -2,6 +2,23 @@
 
 Opinionated [`coc`](https://github.com/neoclide/coc.nvim) defaults.
 
+## Deprecation Notice
+
+This plugin is unmaintained.
+
+The author has since migrated to [Neovim][Neovim]
+([LazyVim][LazyVim] in particular), which has
+built-in LSP support (as of v0.11, or you could
+install [`nvim-lspconfig`][nvim-lspconfig]).
+For completion, see [`blink.cmp`][blink.cmp];
+for managing tooling, see [`mason.nvim`][mason.nvim].
+
+[Neovim]: https://neovim.io/
+[LazyVim]: https://www.lazyvim.org/
+[nvim-lspconfig]: https://github.com/neovim/nvim-lspconfig
+[blink.cmp]: https://github.com/Saghen/blink.cmp
+[mason.nvim]: https://github.com/williamboman/mason.nvim
+
 ## Introduction
 
 Sets opinionated [`coc`](https://github.com/neoclide/coc.nvim) defaults.
